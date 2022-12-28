@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush Color="#FFFFFF" x:Key="MainColor"/>
+    <SolidColorBrush Color="#D3D3D3" x:Key="AdditionalColor"/>
+    <SolidColorBrush Color="#A163F5" x:Key="ActentColor"/>
+    <Style TargetType="Grid">
+        <Setter Property="Background" Value="{StaticResource MainColor}"/>
+
+    </Style>
+    <FontFamily x:Key="MainFont">pack://application:,,,/Assets/Fonts/courier_new.ttf#Courier New
+    </FontFamily>
+    <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource MainFont}"/>
+    </Style>
+</ResourceDictionary>

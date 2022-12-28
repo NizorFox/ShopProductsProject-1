@@ -1,0 +1,120 @@
+﻿<Page x:Class="ShopProductsProject.View.Pages.ProductPages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ShopProductsProject.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProductPages">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Grid.Column="1">
+                <ComboBoxItem>
+                    <TextBlock Text="По возрастанию"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock Text="По убыванию"/>
+                </ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="FilterComboBox" Grid.Column="2"/>
+        </Grid>
+        <TextBox x:Name="SearchTextBox" Grid.Column="0" TextChanged="SearchTextBoxTextChanged"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" >
+                <ComboBox x:Name="SortComboBox" SelectionChanged="SortComboBoxSelectionChanged" >
+                    <ComboBoxItem>
+                        <TextBlock Text="Без сортировки"/>
+                    </ComboBoxItem>
+
+                    <ComboBoxItem>
+                        <TextBlock Text="По наименованию"/>
+                    </ComboBoxItem>
+
+                    <ComboBoxItem>
+                        <TextBlock Text="По стоимости"/>
+                    </ComboBoxItem>
+
+                </ComboBox>
+                <Button Content="↓" Name="OrderButton" Click="OrderButtonClick"/>
+            </StackPanel>
+
+
+            <ComboBox x:Name="FiltrationComboBox" Grid.Column="2"  SelectionChanged="FiltrationComboBoxSelectionChanged">
+
+            </ComboBox>
+
+            <ScrollViewer Grid.Row="1">
+            <ListView x:Name="DataListView" SelectionMode="Single" SelectionChanged="DataListViewSelectionChanged">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border  CornerRadius="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding ImagePath}" Height="100" Width="100"/>
+                                <Grid Grid.Column="1" Margin="15,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding ProductType.Title}"/>
+                                        <TextBlock Text="|"/>
+                                        <TextBlock Text="{Binding Title}"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding ArticleNumber}" Grid.Row="1"/>
+                                    <TextBlock Text="{Binding MaterialList}" Grid.Row="2"/>
+                                </Grid>
+                                <TextBlock Text="{Binding CostProduct}" Grid.Column="2" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock x:Name="PrevTextBlock" VerticalAlignment="Center" Text="&lt;" Margin="0 0 2 0" FontSize="16" MouseLeftButtonDown="PrevTextBlockMouseLeftButtonDown"/>
+            <ListView x:Name="PaginationListView" BorderThickness="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock MouseLeftButtonDown="TextBlockMouseLeftButtonDown" FontSize="16" Foreground="{Binding TextColor}"
+                                   FontWeight="{Binding Fontweight}"
+                                   Text="{Binding Num}"
+                                   TextDecorations="{Binding Selected}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal">
+
+                        </StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            <TextBlock x:Name="NextTextBlock" MouseLeftButtonDown="NextTextBlockMouseLeftButtonDown" VerticalAlignment="Center" Text="&gt;" Margin="0 0 2 0" FontSize="16"/>
+<Button HorizontalAlignment="Left" x:Name="AddProductButton" Content="Добавить товар" Grid.Row="2" Click="AddProductButtonClick"/>
+            <Button HorizontalAlignment="Left" x:Name="DeleteProductButton" Content="Удалить товар" Grid.Row="2" Margin="15, 0, 0, 0" Click="DeleteProductButtonClick"/>
+        </StackPanel>
+        
+    </Grid>
+
+</Page>

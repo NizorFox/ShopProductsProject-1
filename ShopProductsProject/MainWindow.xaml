@@ -1,0 +1,19 @@
+﻿<Window x:Class="ShopProductsProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShopProductsProject"
+        mc:Ignorable="d"
+        Title="Продукция" Icon= "Assets/Images/icon.ico"
+ Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding ElementName=MainFrame.Content, Path=Content.Title}"></TextBlock>
+        <Button x:Name="BackButton" Content="Назад" Click="BackButtonClick" HorizontalAlignment="Right"/>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
+    </Grid>
+</Window>
